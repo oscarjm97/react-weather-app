@@ -80,8 +80,8 @@ function App() {
 
     return (
         <div
-            className={`container container${
-                isError || weatherData?.id ? '-open' : ''
+            className={`container ${
+                isError || weatherData?.id ? 'container-open' : ''
             }`}
         >
             <div className='search-box'>
