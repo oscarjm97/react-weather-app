@@ -13,10 +13,10 @@ import Thunderstorm from './assets/thunderstorm.png';
 
 const LocationNotFound = () => {
     return (
-        <div className='not-found'>
+        <div className="not-found">
             <img
                 src={LocationError}
-                alt='Location not found'
+                alt="Location not found"
             />
             <p>Oops! Invalid location :/</p>
         </div>
@@ -84,16 +84,16 @@ function App() {
                 isError || weatherData?.id ? 'container-open' : ''
             }`}
         >
-            <div className='search-box'>
-                <i className='fa-solid fa-location-dot'></i>
+            <div className="search-box">
+                <i className="fa-solid fa-location-dot"></i>
                 <input
-                    type='text'
-                    placeholder='Enter your location'
+                    type="text"
+                    placeholder="Enter your location"
                     value={location}
                     onChange={handleChangeLocation}
                 />
                 <button
-                    className='fa-solid fa-magnifying-glass'
+                    className="fa-solid fa-magnifying-glass"
                     onClick={handleClick}
                     disabled={location.length < 3}
                 ></button>
@@ -103,32 +103,32 @@ function App() {
 
             {!isError && weatherData?.id && (
                 <>
-                    <div className='weather-box'>
+                    <div className="weather-box">
                         <img
                             src={weatherPicture}
-                            alt='Weather Box'
+                            alt="Weather Box"
                         />
-                        <p className='temperature'>
+                        <p className="temperature">
                             {Math.round(weatherData.main.temp)}
                             <span>°C</span>
                         </p>
-                        <p className='description'>
+                        <p className="description">
                             {weatherData.weather[0].description}
                         </p>
                     </div>
 
-                    <div className='weather-details'>
-                        <div className='humidity'>
-                            <i className='fa-solid fa-water'></i>
-                            <div className='text'>
+                    <div className="weather-details">
+                        <div className="humidity">
+                            <i className="fa-solid fa-water"></i>
+                            <div className="text">
                                 <span>{weatherData.main.humidity}%</span>
                                 <p>Humidity</p>
                             </div>
                         </div>
 
-                        <div className='wind'>
-                            <i className='fa-solid fa-wind'></i>
-                            <div className='text'>
+                        <div className="wind">
+                            <i className="fa-solid fa-wind"></i>
+                            <div className="text">
                                 <span>
                                     {Math.round(weatherData.wind.speed)} Km/h
                                 </span>
