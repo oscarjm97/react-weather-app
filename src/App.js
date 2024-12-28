@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import {
+  IconMapPinFilled,
+  IconRipple,
+  IconSearch,
+  IconWind,
+} from '@tabler/icons-react';
 import weatherAPI from './utils/api';
 import './App.css';
 
@@ -30,7 +36,13 @@ function App() {
     setLocation(event.target.value);
   };
 
-  const handleClick = async () => {
+  const handleEnterKeyPress = (event) => {
+    if (event.key === 'Enter' && location.length >= 3) {
+      getWeatherAPI();
+    }
+  };
+
+  const getWeatherAPI = async () => {
     const response = await weatherAPI(location);
 
     if (response.cod !== 200) {
@@ -82,18 +94,17 @@ function App() {
       }`}
     >
       <div className="search-box">
-        <i className="fa-solid fa-location-dot"></i>
+        <IconMapPinFilled className="icon" height={32} width={32} />
         <input
           type="text"
           placeholder="Enter your location"
           value={location}
           onChange={handleChangeLocation}
+          onKeyDown={handleEnterKeyPress}
         />
-        <button
-          className="fa-solid fa-magnifying-glass"
-          onClick={handleClick}
-          disabled={location.length < 3}
-        ></button>
+        <button disabled={location.length < 3} onClick={getWeatherAPI}>
+          <IconSearch stroke={2} height={28} width={28} />
+        </button>
       </div>
 
       {isError && <LocationNotFound />}
@@ -111,7 +122,7 @@ function App() {
 
           <div className="weather-details">
             <div className="humidity">
-              <i className="fa-solid fa-water"></i>
+              <IconRipple className="icon" stroke={2} height={32} width={32} />
               <div className="text">
                 <span>{weatherData.main.humidity}%</span>
                 <p>Humidity</p>
@@ -119,7 +130,7 @@ function App() {
             </div>
 
             <div className="wind">
-              <i className="fa-solid fa-wind"></i>
+              <IconWind className="icon" stroke={2} height={32} width={32} />
               <div className="text">
                 <span>{Math.round(weatherData.wind.speed)} Km/h</span>
                 <p>Wind Speed</p>
